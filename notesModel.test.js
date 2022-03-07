@@ -1,16 +1,17 @@
+const NotesModel = require('./notesModel');
 
+describe(NotesModel, () => {
 
-describe(notesModel, () => {
-    let model;
-    beforeEach => {
-      const model = new notesModel();  
-    }
+    describe('#getNotes', () => {
+      
+      let model;
 
-    describe('test the getNotes() method', () => {
+      beforeEach(() => {
+        model = new NotesModel 
+      });
 
-      it("Test getNotes empty", () => {
-        
-        expect(model).toBeInstanceOf(notesModel());
+      it('returns an empty array on creation', () => {
+        expect(model.getNotes()).toEqual([])
       });
 
     });
