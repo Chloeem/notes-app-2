@@ -29,6 +29,7 @@
   var NotesModel = require_notesModel();
   console.log("The notes app in running!");
   var model = new NotesModel();
-  model.addNote("Time for tea!");
+  model.addNote("Time for lunch!");
+  model.addNote("Buy milk!");
   console.log(model.getNotes());
 })();
