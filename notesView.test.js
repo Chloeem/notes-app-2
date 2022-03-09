@@ -30,10 +30,12 @@ describe(NotesView, () => {
     
     const inputEl = document.querySelector('#note-input')
     inputEl.value = 'Buy groceries'
+
     const buttonEl = document.querySelector('#add-note-button')
     buttonEl.click()
 
-    expect(document.querySelector('#note-input').value).toEqual('Buy groceries')
+    expect(document.querySelectorAll('div.note').length).toEqual(1);
+    expect(document.querySelectorAll('div.note')[0].innerText).toEqual('Buy groceries')
   })
 
 })

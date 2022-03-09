@@ -30,8 +30,14 @@
     "notesView.js"(exports, module) {
       var NotesView2 = class {
         constructor(model2) {
+          this.buttonEl = document.querySelector("#add-note-button");
           this.mainContainerEl = document.querySelector("#main-container");
           this.model = model2;
+          this.buttonEl.addEventListener("click", () => {
+            this.inputEl = document.querySelector("#note-input").value;
+            this.model.addNote(this.inputEl);
+            this.displayNotes();
+          });
         }
         displayNotes() {
           const notes = this.model.getNotes();
