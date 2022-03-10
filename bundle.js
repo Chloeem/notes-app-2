@@ -40,12 +40,16 @@
           });
         }
         displayNotes() {
+          document.querySelectorAll(".note").forEach((note) => {
+            note.remove();
+          });
           const notes = this.model.getNotes();
           notes.forEach((note) => {
             const noteEl = document.createElement("div");
             noteEl.innerText = note;
             noteEl.className = "note";
             this.mainContainerEl.append(noteEl);
+            document.querySelector("#note-input").value = "";
           });
         }
       };
@@ -58,8 +62,6 @@
   var NotesView = require_notesView();
   console.log("The notes app in running!");
   var model = new NotesModel();
-  model.addNote("Time for lunch!");
-  model.addNote("Buy milk!");
   var view = new NotesView(model);
   view.displayNotes();
   console.log(model.getNotes());

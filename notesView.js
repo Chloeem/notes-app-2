@@ -13,6 +13,10 @@ class NotesView {
   }
 
   displayNotes() {
+    document.querySelectorAll('.note').forEach(note => {
+      note.remove();
+    });
+
     const notes = this.model.getNotes()
     
     notes.forEach( note => { 
@@ -20,6 +24,7 @@ class NotesView {
       noteEl.innerText = note;
       noteEl.className = 'note';
       this.mainContainerEl.append(noteEl);
+      document.querySelector('#note-input').value = '';
     })
   }
 }

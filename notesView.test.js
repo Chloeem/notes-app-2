@@ -38,4 +38,17 @@ describe(NotesView, () => {
     expect(document.querySelectorAll('div.note')[0].innerText).toEqual('Buy groceries')
   })
 
+  it('Displays the correct number of notes', () => {
+    document.body.innerHTML = fs.readFileSync('./index.html');
+    let model = new NotesModel();
+    let view = new NotesView(model);
+
+    model.addNote('Hello');
+
+    view.displayNotes();
+    view.displayNotes();
+
+    expect(document.querySelectorAll('div.note').length).toEqual(1);
+  });
+
 })
