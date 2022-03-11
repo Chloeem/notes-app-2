@@ -14,14 +14,23 @@ require('jest-fetch-mock').enableMocks()
 
 describe('NotesApi class', () => {
   it('calls fetch and loads the notes', async () => {
-    // let model = new NotesModel
-    // let view = new NotesView(model)
     const api = new NotesApi();
     fetch.mockResponseOnce(JSON.stringify({
       notes: ['Ruby on Rails']
     }));
 
     api.loadNotes((data) => {
+      expect(data.notes[0]).toBe('Ruby on Rails');
+    });
+  });
+
+  it('calls fetch and posts the notes', async () => {
+    const api = new NotesApi();
+    fetch.mockResponseOnce(JSON.stringify({
+      notes: ['Ruby on Rails']
+    }));
+
+    api.createNote('Note', (data) => {
       expect(data.notes[0]).toBe('Ruby on Rails');
     });
   });

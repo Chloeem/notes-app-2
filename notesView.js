@@ -1,13 +1,19 @@
 class NotesView {
 
-  constructor(model) {
+  constructor(model, api) {
+    this.api = api;
     this.buttonEl = document.querySelector('#add-note-button');
     this.mainContainerEl = document.querySelector('#main-container');
-    this.model = model
+    this.model = model;
     
     this.buttonEl.addEventListener('click', () => {
-      this.inputEl = document.querySelector('#note-input').value
-      this.model.addNote(this.inputEl);
+      this.inputEl = document.querySelector('#note-input').value;
+
+      this.api.createNote((this.inputEl), data => {
+        this.model.addNote(this.inputEl);
+        this.displayNotes();
+      });
+
       this.displayNotes();
     });
   }
@@ -17,7 +23,7 @@ class NotesView {
       note.remove();
     });
 
-    const notes = this.model.getNotes()
+    const notes = this.model.getNotes();
     
     notes.forEach( note => { 
       const noteEl = document.createElement('div');
